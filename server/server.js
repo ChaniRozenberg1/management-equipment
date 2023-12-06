@@ -3,9 +3,11 @@ const app = express();
 const cors = require('cors');
 const bodyParse = require('body-parser');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 
-mongouri = process.env.MONGODB_URI
+mongouri = process.env.MONGOURI
+console.log(mongouri);
 mongoose.connect(mongouri);
 const db = mongoose.connection;
 
