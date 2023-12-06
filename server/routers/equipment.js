@@ -3,8 +3,8 @@ const router = express.Router();
 const equipmentModel = require('../models/equipment');
 
 
-router.get('/' , async (_, response) => {
-    const equipments = await equipmentModel.find({});
+router.get('/' , async (request, response) => {
+    const equipments = await equipmentModel.find({}).sort(request.query.sort || 'owner');
     try{        
         response.send(equipments);
     }

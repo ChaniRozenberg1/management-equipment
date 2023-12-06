@@ -3,12 +3,12 @@ const mongoose = require('mongoose')
 const EquipmentSchema = mongoose.Schema({
     owner: {type: String, unique: true},
     site: String,
-    computeID: {type: String, unique: true},
-    headphonesID: {type: String, unique: true},
-    mouseID: {type: String, unique: true},
-    keyboardID: {type: String, unique: true},
-    batteryID: {type: String, unique: true},
-    screenID: {type: String, unique: true},
-    bagID: {type: String, unique: true}
+    computerID: {type: Number, unique: true},
+    headphonesID: {type: Number, unique: true},
+    mouseID: {type: Number, unique: true},
+    keyboardID: {type: Number, unique: true},
+    batteryID: {type: Number, unique: true},
+    screenID: {type: Number, unique: true},
+    bagID: {type: Number, unique: true}
 });
 module.exports = mongoose.model('equipments', EquipmentSchema);
