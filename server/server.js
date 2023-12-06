@@ -3,8 +3,12 @@ const app = express();
 const cors = require('cors');
 const bodyParse = require('body-parser');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-mongoose.connect('mongodb+srv://GYC:GYC2023@cluster0.zsh6qds.mongodb.net/');
+
+mongouri = process.env.MONGOURI
+console.log(mongouri);
+mongoose.connect(mongouri);
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
