@@ -8,7 +8,7 @@ services:
       - ./client:/app
     ports:
       - 3000:3000
-    command: sh -c "(curl -sL https://netfree.link/dl/unix-ca.sh | sh ) && export NODE_EXTRA_CA_CERTS=/etc/ca-bundle.crt && npm i && sleep infinity"
+    command: "npm i & sleep infinity"
   
   server:
     container_name: manegement-equipment-server
@@ -17,4 +17,4 @@ services:
         - 5000:5000
     volumes:
         - ./server:/app
-    command: sh -c "(curl -sL https://netfree.link/dl/unix-ca.sh | sh ) && export NODE_EXTRA_CA_CERTS=/etc/ca-bundle.crt && npm i && sleep infinity"
+    command: "npm i & sleep infinity"
