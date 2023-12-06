@@ -1,15 +1,14 @@
 const mongoose = require('mongoose')
 
 const EquipmentSchema = mongoose.Schema({
-    id: String,
-    name: String,
-    owner: String,
-    Location: LocationEnum,
+    owner: {type: String, unique: true},
+    site: String,
+    computerID: {type: Number, unique: true},
+    headphonesID: {type: Number, unique: true},
+    mouseID: {type: Number, unique: true},
+    keyboardID: {type: Number, unique: true},
+    batteryID: {type: Number, unique: true},
+    screenID: {type: Number, unique: true},
+    bagID: {type: Number, unique: true}
 });
-module.exports = mongoose.model('Equipment', EquipmentSchema);
-
-const LocationEnum = {
-    ASHDOD: 'אשדוד',
-    DIMONA: 'דימונה',
-    ARAD: 'ערד'
-};
+module.exports = mongoose.model('equipments', EquipmentSchema);

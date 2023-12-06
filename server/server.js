@@ -2,10 +2,13 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParse = require('body-parser');
+const equipmentRouter = require('./routers/equipment');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 
-mongouri = process.env.MONGODB_URI
+mongouri = process.env.MONGOURI
+console.log(mongouri);
 mongoose.connect(mongouri);
 const db = mongoose.connection;
 
@@ -16,14 +19,7 @@ db.once("open", function () {
 
 app.use('/',bodyParse.json())
 
-// app.post('/',express.json(), (req, res) => {
-//     try {
-//         res.status(200).send(req.body);  
-//     } catch (error) {
-//         res.send("Error");  
-//     }
-// }); 
-
+app.use('/equipment', equipmentRouter);
 
 app.use(cors());
 
