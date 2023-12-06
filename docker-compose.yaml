@@ -8,7 +8,7 @@ services:
       - ./client:/app
     ports:
       - 3000:3000
-    command: "npm i & sleep infinity"
+    command: "sleep infinity & npm i"
   
   server:
     container_name: manegement-equipment-server
@@ -17,4 +17,4 @@ services:
         - 5000:5000
     volumes:
         - ./server:/app
-    command: "npm i & sleep infinity"
+    command: "sleep infinity & npm i"
