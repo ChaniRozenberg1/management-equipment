@@ -18,6 +18,15 @@ db.once("open", function () {
 
 app.use('/',bodyParse.json())
 
+// app.post('/',express.json(), (req, res) => {
+//     try {
+//         res.status(200).send(req.body);  
+//     } catch (error) {
+//         res.send("Error");  
+//     }
+// }); 
+
+
 app.use(cors());
 
 app.listen(5000, ()=>{console.log("run on localhost:5000")})
