@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const EquipmentSchema = mongoose.Schema({
-    owner: {type: String, unique: true},
+    owner: String,
     site: String,
     computerID: {type: Number, unique: true},
     headphonesID: {type: Number, unique: true},

@@ -18,6 +18,7 @@ db.once("open", function () {
 });
 
 app.use(cors());
+
 app.use('/',bodyParse.json())
 
 app.use('/equipment', equipmentRouter);

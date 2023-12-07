@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const equipmentModel = require('../models/equipment');
 
-router.get('/' , async (request, response) => {
+router.get('/', async (request, response) => {
     const equipments = await equipmentModel.find(request.body).sort(request.query.sort || 'owner');
-    try{        
+    try {
         response.send(equipments);
     }
     catch (error) {
@@ -12,8 +12,8 @@ router.get('/' , async (request, response) => {
     }
 })
 
-router.post('/' , async (request, response) => {
-    try{
+router.post('/', async (request, response) => {
+    try {
         const equipment = await new equipmentModel(request.body).save();
         response.send(equipment);
     }
@@ -21,23 +21,34 @@ router.post('/' , async (request, response) => {
         response.status(500).send(error);
     }
 })
+router.put('/:id', async (request, response) => {
+    try {
+        console.log(request.body);
+        let obj = {
+            // _id: request.params.id,
+            owner: request.body.owner,
+            site: request.body.site,
+            computerID: parseInt(request.body.computerID),
+            headphonesID: parseInt(request.body.headphonesID),
+            mouseID: parseInt(request.body.mouseID),
+            keyboardID: parseInt(request.body.keyboardID),
+            batteryID: parseInt(request.body.batteryID),
+            screenID: parseInt(request.body.screenID),
+            bagID: parseInt(request.body.bagID)
+        }
+        const equipment = await equipmentModel.updateOne(obj);
+        console.log(equipment+"equipment updated");
+        response.send(equipment);
+    }
+    catch (error) {
+        console.log("error: " + error);
+        response.status(500).send(error);
+    }
+})
 
-router.put('/:id' , async (request, response) => {
-    try{
-        const equipment = await equipmentModel.updateOne(
-            {
-                _id: request.params.id,
-                owner: request.body.owner,
-                site: request.body.site,
-                computerID: request.body.computerID,
-                headphonesID: request.body.headphonesID,
-                mouseID: request.body.mouseID,
-                keyboardID: request.body.keyboardID,
-                batteryID: request.body.batteryID,
-                screenID: request.body.screenID,
-                bagID: request.body.bagID
-            }
-            );
+router.delete('/:id', async (request, response) => {
+    try {
+        const equipment = await equipmentModel.deleteOne({ "_id": request.params.id });
         response.send(equipment);
     }
     catch (error) {
@@ -45,19 +56,9 @@ router.put('/:id' , async (request, response) => {
     }
 })
 
-router.delete('/:id' , async (request, response) => {
-    try{
-        const equipment = await equipmentModel.deleteOne({"_id": request.params.id});
-        response.send(equipment);
-    }
-    catch (error) {
-        response.status(500).send(error);
-    }
-})
-
-router.get('/:id' , async (request, response) => {
-    const equipment = await equipmentModel.find({"_id": request.params.id});
-    try{
+router.get('/:id', async (request, response) => {
+    const equipment = await equipmentModel.find({ "_id": request.params.id });
+    try {
         response.send(equipment);
     }
     catch (error) {

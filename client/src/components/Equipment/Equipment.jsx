@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import skyvar from "./skyvar.png"
 import './Equipment.css';
-
+import TableRow from '../TableRow/TableRow'
 
 
 function Equipment() {
@@ -92,8 +92,12 @@ function Equipment() {
     }
 
 
-    const updateRow = () => {
+    const updateRow = async (e,item) => {
         console.log("updateRow");
+        // let a=true;
+        // while(a)
+            // e.target.value="aaa"
+
     }
 
     return (
@@ -124,19 +128,20 @@ function Equipment() {
                 </thead>
                 <tbody>
                     {data.map(item => (
-                        <tr key={item.owner}>
-                            <td>{item.owner}</td>
-                            <td>{item.site}</td>
-                            <td>{item.computerID}</td>
-                            <td>{item.keyboardID}</td>
-                            <td>{item.screenID}</td>
-                            <td>{item.batteryID}</td>
-                            <td>{item.bagID}</td>
-                            <td>{item.headphonesID}</td>
-                            <td>{item.mouseID}</td>
-                            <td> <input type="button" name="update" value="✏️" onClick={() => updateRow()} /></td>
-                            <td> <input type="button" name="delete" value="🗑️" onClick={(e) => deleteRow(e,item)} /></td>
-                        </tr>
+                        // <tr key={item.owner}>
+                        //     <td>{item.owner}</td>
+                        //     <td>{item.site}</td>
+                        //     <td>{item.computerID}</td>
+                        //     <td>{item.keyboardID}</td>
+                        //     <td>{item.screenID}</td>
+                        //     <td>{item.batteryID}</td>
+                        //     <td>{item.bagID}</td>
+                        //     <td>{item.headphonesID}</td>
+                        //     <td>{item.mouseID}</td>
+                        //     <td> <input type="button" name="update" value="✏️" onClick={(e) => updateRow(e,item)}/></td>
+                        //     <td> <input type="button" name="delete" value="🗑️" onClick={(e) => deleteRow(e,item)}/></td>
+                        // </tr>
+                        <TableRow item={item}/>
                     ))}
                     {showForm && (
                         <tr>

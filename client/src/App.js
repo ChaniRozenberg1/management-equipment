@@ -1,5 +1,5 @@
 import './App.css';
-import Equipment from './components/Equipment';
+import Equipment from './components/Equipment/Equipment';
 
 function App() {
  
