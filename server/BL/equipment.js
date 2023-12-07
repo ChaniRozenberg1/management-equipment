@@ -1,10 +1,10 @@
-const unnecessaryEquipmentModel = require('../models/unnecessaryEquipment');
+const equipmentModel = require('../models/equipment');
 
 module.exports = {
-    buildUnnecessaryEquipmentModels: function(equipment) {
+    buildEquipmentModels: function(equipment) {
         let equipmentArray = []
         equipmentDict.forEach(e => {
-            equipmentArray.push(new unnecessaryEquipmentModel({ 
+            equipmentArray.push(new equipmentModel({ 
                 equipmentName: Object.values(e)[0],
                 equipmentID: equipment[Object.keys(e)[0] + 'ID'],
                 site: equipment.site

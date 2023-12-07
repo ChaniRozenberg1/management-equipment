@@ -1,14 +1,9 @@
-const mongoose = require('mongoose')
+mongoose = require('mongoose')
 
-const EquipmentSchema = mongoose.Schema({
-    owner: {type: String, unique: true},
-    site: String,
-    computerID: {type: Number, unique: true},
-    headphonesID: {type: Number, unique: true},
-    mouseID: {type: Number, unique: true},
-    keyboardID: {type: Number, unique: true},
-    batteryID: {type: Number, unique: true},
-    screenID: {type: Number, unique: true},
-    bagID: {type: Number, unique: true}
+const equipmentSchema = mongoose.Schema({
+    equipmentName: String,
+    equipmentID: Number,
+    site: String
 });
-module.exports = mongoose.model('equipments', EquipmentSchema);
+
+module.exports = mongoose.model('equipments', equipmentSchema);

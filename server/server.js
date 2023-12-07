@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParse = require('body-parser');
-const equipmentRouter = require('./routers/equipment');
+const userRouter = require('./routers/user');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -21,6 +21,6 @@ app.use(cors());
 
 app.use('/', bodyParse.json())
 
-app.use('/equipment', equipmentRouter);
+app.use('/user', userRouter);
 
 app.listen(5000, () => {console.log("run on localhost:5000")})

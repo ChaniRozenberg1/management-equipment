@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const userModel = require('../models/users');
 const equipmentModel = require('../models/equipment');
-const unnecessaryEquipmentModel = require('../models/unnecessaryEquipment');
-const unnecessaryEquipmentBL = require('../BL/unnecessaryEquipment');
+const equipmentBL = require('../BL/equipment');
 
 router.get('/' , async (request, response) => {
-    const equipments = await equipmentModel.find(request.body).sort(request.query.sort || 'owner');
+    const users = await userModel.find(request.body).sort(request.query.sort || 'owner');
     try{        
-        response.send(equipments);
+        response.send(users);
     }
     catch (error) {
         response.status(500).send(error);
@@ -16,8 +16,8 @@ router.get('/' , async (request, response) => {
 
 router.post('/' , async (request, response) => {
     try{
-        const equipment = await new equipmentModel(request.body).save();
-        response.send(equipment);
+        const users = await new userModel(request.body).save();
+        response.send(users);
     }
     catch (error) {
         response.status(500).send(error);
@@ -26,7 +26,7 @@ router.post('/' , async (request, response) => {
 
 router.put('/:id' , async (request, response) => {
     try{
-        const equipment = await equipmentModel.updateOne(
+        const users = await userModel.updateOne(
             {
                 _id: request.params.id,
                 owner: request.body.owner,
@@ -40,7 +40,7 @@ router.put('/:id' , async (request, response) => {
                 bagID: request.body.bagID
             }
             );
-        response.send(equipment);
+        response.send(users);
     }
     catch (error) {
         response.status(500).send(error);
@@ -49,15 +49,14 @@ router.put('/:id' , async (request, response) => {
 
 router.delete('/:id' , async (request, response) => {
     try{
-        const equipment = await equipmentModel.findOneAndDelete({"_id": request.params.id});
-        if(equipment) {
-            const equipmentArray = unnecessaryEquipmentBL.buildUnnecessaryEquipmentModels(equipment)
-            console.log(equipment);
+        const user = await userModel.findOneAndDelete({"_id": request.params.id});
+        if(user) {
+            const equipmentArray = equipmentBL.buildEquipmentModels(user)
             equipmentArray.forEach(async e => {
-                await new unnecessaryEquipmentModel(e).save();
+                await new equipmentModel(e).save();
             });
         }
-        response.send(equipment);
+        response.send(user);
     }
     catch (error) {
         response.status(500).send(error);
