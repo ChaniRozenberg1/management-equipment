@@ -23,53 +23,29 @@ router.post('/' , async (request, response) => {
         response.status(500).send(error);
     }
 })
-router.put('/:id', async (request, response) => {
-    try {
-        console.log(request.body);
-        let obj = {
-            // _id: request.params.id,
-            owner: request.body.owner,
-            site: request.body.site,
-            computerID: parseInt(request.body.computerID),
-            headphonesID: parseInt(request.body.headphonesID),
-            mouseID: parseInt(request.body.mouseID),
-            keyboardID: parseInt(request.body.keyboardID),
-            batteryID: parseInt(request.body.batteryID),
-            screenID: parseInt(request.body.screenID),
-            bagID: parseInt(request.body.bagID)
-        }
-        const equipment = await equipmentModel.updateOne(obj);
-        console.log(equipment+"equipment updated");
-        response.send(equipment);
+
+router.put('/:id' , async (request, response) => {
+    try{
+        const users = await userModel.updateOne(
+            {
+                _id: request.params.id,
+                owner: request.body.owner,
+                site: request.body.site,
+                computerID: request.body.computerID,
+                headphonesID: request.body.headphonesID,
+                mouseID: request.body.mouseID,
+                keyboardID: request.body.keyboardID,
+                batteryID: request.body.batteryID,
+                screenID: request.body.screenID,
+                bagID: request.body.bagID
+            }
+            );
+        response.send(users);
     }
     catch (error) {
-        console.log("error: " + error);
         response.status(500).send(error);
     }
 })
-
-// router.put('/:id' , async (request, response) => {
-//     try{
-//         const users = await userModel.updateOne(
-//             {
-//                 _id: request.params.id,
-//                 owner: request.body.owner,
-//                 site: request.body.site,
-//                 computerID: request.body.computerID,
-//                 headphonesID: request.body.headphonesID,
-//                 mouseID: request.body.mouseID,
-//                 keyboardID: request.body.keyboardID,
-//                 batteryID: request.body.batteryID,
-//                 screenID: request.body.screenID,
-//                 bagID: request.body.bagID
-//             }
-//             );
-//         response.send(users);
-//     }
-//     catch (error) {
-//         response.status(500).send(error);
-//     }
-// })
 
 router.delete('/:id' , async (request, response) => {
     try{
