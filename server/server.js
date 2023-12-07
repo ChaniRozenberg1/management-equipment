@@ -17,10 +17,10 @@ db.once("open", function () {
     console.log("Connected successfully");
 });
 
+app.use(cors());
+
 app.use('/', bodyParse.json())
 
 app.use('/equipment', equipmentRouter);
-
-app.use(cors());
 
 app.listen(5000, () => {console.log("run on localhost:5000")})

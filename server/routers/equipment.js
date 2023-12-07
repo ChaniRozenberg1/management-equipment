@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const equipmentModel = require('../models/equipment');
+const unnecessaryEquipmentModel = require('../models/unnecessaryEquipment');
+const unnecessaryEquipmentBL = require('../BL/unnecessaryEquipment');
 
 router.get('/' , async (request, response) => {
     const equipments = await equipmentModel.find(request.body).sort(request.query.sort || 'owner');
@@ -47,17 +49,14 @@ router.put('/:id' , async (request, response) => {
 
 router.delete('/:id' , async (request, response) => {
     try{
-        const equipment = await equipmentModel.deleteOne({"_id": request.params.id});
-        response.send(equipment);
-    }
-    catch (error) {
-        response.status(500).send(error);
-    }
-})
-
-router.get('/:id' , async (request, response) => {
-    const equipment = await equipmentModel.find({"_id": request.params.id});
-    try{
+        const equipment = await equipmentModel.findOneAndDelete({"_id": request.params.id});
+        if(equipment) {
+            const equipmentArray = unnecessaryEquipmentBL.buildUnnecessaryEquipmentModels(equipment)
+            console.log(equipment);
+            equipmentArray.forEach(async e => {
+                await new unnecessaryEquipmentModel(e).save();
+            });
+        }
         response.send(equipment);
     }
     catch (error) {
