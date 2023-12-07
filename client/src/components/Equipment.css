@@ -1,0 +1,56 @@
+h1 {
+    color: white;
+    text-align: center;
+    padding-top: 50px
+}
+.all{
+    width: "100%";
+}
+.header {
+    background-color: #081d48;
+    height: 150px;
+    margin-bottom: 8px
+}
+.header2 {
+    background-color: #f17a30;
+    height: 50px;
+    margin-bottom: 8px
+}
+.header3 {
+    background-color: #f17a30;
+    height: 10px;
+    margin-bottom: 60px
+}
+.skyvarImg {
+    position: fixed;
+    bottom: 1px;
+}
+.skyvarImg > img{
+    width: 60%;
+}
+.table  {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    align-items: center;
+    direction: rtl;
+}
+.table  th {
+     padding: 8px;
+}
+.table  td, .table  th {
+  border: 1px solid #ddd;
+}
+.table  td > input{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.table  tr:nth-child(even){background-color: #F2F2F2;}
+.table  tr:hover {background-color: #ddd;}
+.table  th {
+    text-align: center;
+    background-color: #081d48;
+    color: white;
+}
+
