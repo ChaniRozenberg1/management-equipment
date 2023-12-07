@@ -13,7 +13,7 @@ function Equipment() {
 
     const getDataFromDB = async (e) => {
         try {
-            const response = await fetch('http://localhost:5000/equipment/', {
+            const response = await fetch('http://localhost:5000/user/', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ function Equipment() {
     const addRowToDB = async (e, newRow) => {
         e.preventDefault()
         try {
-            const response = await fetch('http://localhost:5000/equipment/', {
+            const response = await fetch('http://localhost:5000/user/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ function Equipment() {
     const deleteRow = async (e,item) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/equipment/${item._id}`, {
+            const response = await fetch(`http://localhost:5000/user/${item._id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

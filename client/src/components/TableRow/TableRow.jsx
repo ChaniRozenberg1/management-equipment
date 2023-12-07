@@ -113,7 +113,7 @@ function TableRow({ item }) {
   const deleteRow = async (e,item) => {
     e.preventDefault();
     try {
-        const response = await fetch(`http://localhost:5000/equipment/${item._id}`, {
+        const response = await fetch(`http://localhost:5000/user/${item._id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ function TableRow({ item }) {
     e.preventDefault()
     try {
         console.log(item);
-        const response = await fetch(`http://localhost:5000/equipment/${item._id}`, {
+        const response = await fetch(`http://localhost:5000/user/${item._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
